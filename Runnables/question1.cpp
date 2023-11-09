@@ -36,7 +36,7 @@ int main() {
     std::random_device rd;
     std::mt19937 gen(rd());
     int total,int duration;
-
+    int numNodes = 1070376
     // Loop for 200 random source-destination pairs
     for (int i = 0; i < 200; i++) {
         // Generate a random source and destination
