@@ -85,7 +85,7 @@ public:
         for (const StopTime& stopTime : stopTimes) {
             if (stopTime.stopId == destid) {
                 if (stops[stopTime.stopId].name == stops[sourceid].name) {
-                    cout << trips[stopTime.tripId].id << "(" << stops[sourceStopId].name << " > " << stops[destStopId].name << ")" << endl;
+                    cout << trips[stopTime.tripId].id << "(" << stops[sourceid].name << " > " << stops[destid].name << ")" << endl;
                 }
             }
         }
@@ -96,15 +96,15 @@ public:
         set<string> visitedStops;
 
         for (const StopTime& stopTime : stopTimes) {
-            if (stopTime.stopId == sourceStopId) {
+            if (stopTime.stopId == sourceid) {
                 visitedStops.insert(stopTime.stopId);
 
                 for (const StopTime& transferStopTime : stopTimes) {
-                    if (transferStopTime.tripId != stopTime.tripId && transferStopTime.stopId != sourceStopId && transferStopTime.stopId != destStopId) {
+                    if (transferStopTime.tripId != stopTime.tripId && transferStopTime.stopId != sourceid && transferStopTime.stopId != destid) {
                         if (visitedStops.find(transferStopTime.stopId) == visitedStops.end()) {
                             visitedStops.insert(transferStopTime.stopId);
-                            cout << trips[stopTime.tripId].id << "(" << stops[sourceStopId].name << " > " << stops[transferStopTime.stopId].name << ") - "
-                                << trips[transferStopTime.tripId].id << "(" << stops[transferStopTime.stopId].name << " > " << stops[destStopId].name << "), ";
+                            cout << trips[stopTime.tripId].id << "(" << stops[sourceid].name << " > " << stops[transferStopTime.stopId].name << ") - "
+                                << trips[transferStopTime.tripId].id << "(" << stops[transferStopTime.stopId].name << " > " << stops[destid].name << "), ";
                         }
                     }
                 }
@@ -119,7 +119,7 @@ private:
     vector<StopTime> stopTimes;        //Vector to maintain the order of stop times
 };
 
-int main(int argc, char* argv[]) {
+int main( char* argv[]) {
    
 
     GTFSReader reader;
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
     cin>>sourceid;
     cin>>destid;
 
-    reader.findDirectJourneys(sourceStopId, destid);
+    reader.findDirectJourneys(sourceid, destid);
     reader.findJourneysWithOneTransfer(sourceid, destid);
 
     return 0;
