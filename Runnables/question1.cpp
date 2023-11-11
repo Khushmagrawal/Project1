@@ -10,6 +10,8 @@
 #include <fstream>
 #include <vector>
 
+using namespace std;
+
 struct Edge {
     int u, v, w;
 };
@@ -32,24 +34,25 @@ std::vector<Edge> loadGraphFromDIMACS(const std::string& filename) {
 }
 
 int main() {
-    std::vector<Edge> edges = loadGraphFromDIMACS("Data.txt");
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    vector<Edge> edges = loadGraphFromDIMACS("Data.txt");
+   random_device rd;
+    mt19937 gen(rd());
     int total,int duration;
-    int numNodes = 1070376
-    // Loop for 200 random source-destination pairs
+    int numNodes = 1070376;
+     double total = 0.0;
+   
     for (int i = 0; i < 200; i++) {
         // Generate a random source and destination
         int source = std::uniform_int_distribution<int>(0, numNodes - 1)(gen);
         int destination = std::uniform_int_distribution<int>(0, numNodes - 1)(gen);
 
-        // Call Dijkstra's algorithm from the repository with the generated source and destination
-        auto start = std::chrono::high_resolution_clock::now();
-        // Assuming dijkstra algorithm function is called dijkstraAlgorithm
-        dijkstraAlgorithm(graph, source, destination);
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration = end - start;
-        total = total+duration;
+        
+        auto start = std::chrono::high_resolution_clock::now();  // Clock staarts now
+        
+        dijkstraAlgorithm(graph, source, destination);        // Function is called now
+        auto end = std::chrono::high_resolution_clock::now()    //Clock stops now
+        std::chrono::auto duration = end - start;
+        total = total + duration.count();
 
         
     }
@@ -60,6 +63,5 @@ int main() {
 
    
 
-    return 0;
-}
+    
 
