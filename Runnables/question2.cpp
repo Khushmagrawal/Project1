@@ -1,3 +1,12 @@
+/*Modern routing platforms like Google Maps use routing engines to plan passenger journeys. These engines
+use timetable information in the GTFS format (refer reference guide) to find possible journeys between
+a starting point and a destination. In this context, a ”stop” refers to a specific location where public
+transportation vehicles, such as buses or trains, pick up or drop off passengers. Each stop is identified
+by a unique stop ID, and a ”route” represents a specific path taken by a transportation vehicle.
+
+The code reads the input GTFS data (input data) and takes two command-line inputs, the source stop ID and
+the destination stop ID. The code prints all possible direct journeys and journeys with one transfer.*/
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
